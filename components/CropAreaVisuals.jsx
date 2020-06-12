@@ -1,6 +1,6 @@
 import Draggable from "react-draggable";
 
-const CropAreaVisuals = ({ x, y, width, height, eventHandlers }) => {
+const CropAreaVisuals = ({ x, y, width, height, areaEventHandlers }) => {
   const style = {
     width: `${width}px`,
     height: `${height}px`,
@@ -9,16 +9,16 @@ const CropAreaVisuals = ({ x, y, width, height, eventHandlers }) => {
 
   return(
     <>
-    <Draggable bounds="parent" position={position} {...eventHandlers}>
 
-    <div className="outside" style={style}>
-      <div className="ratio-line vertical vertical-1" />
-      <div className="ratio-line vertical vertical-2" />
-      <div className="ratio-line horizontal horizontal-1" />
-      <div className="ratio-line horizontal horizontal-2" />
-    </div>
-
+    <Draggable bounds="parent" position={position} {...areaEventHandlers}>
+      <div className="outside" style={style}>
+        <div className="ratio-line vertical vertical-1" />
+        <div className="ratio-line vertical vertical-2" />
+        <div className="ratio-line horizontal horizontal-1" />
+        <div className="ratio-line horizontal horizontal-2" />
+      </div>
     </Draggable>
+
     <style jsx>{`
         .outside {
           position: absolute;

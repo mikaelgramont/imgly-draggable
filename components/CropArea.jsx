@@ -32,7 +32,7 @@ const CropArea = ({ initialTopLeft, initialBottomRight, minHeight, minWidth }) =
   const [width, setWidth] = useState(right - left);
   const [height, setHeight] = useState(bottom - top);
 
-  const eventHandlers = {
+  const areaEventHandlers = {
     // onDrag: (e, data) => {
     //   console.log('onDrag', {e, data});
     // },
@@ -46,7 +46,7 @@ const CropArea = ({ initialTopLeft, initialBottomRight, minHeight, minWidth }) =
 
   const attrs = {
     x: left, y: top, width, height,
-    eventHandlers,
+    areaEventHandlers,
   }
   return(
     <CropAreaVisuals {...attrs} />
