@@ -10,8 +10,8 @@
 import CropArea from '../components/CropArea';
 
 const MIN_SIZE = 64;
-const INITIAL_TOP_LEFT = [120.5, 100];
-const INITIAL_BOTTOM_RIGHT = [200.3, 250];
+const INITIAL_TOP_LEFT = [100, 100];
+const INITIAL_BOTTOM_RIGHT = [200, 200];
 
 const Croppable = ({ url }) => (
   <div className="wrapper">
