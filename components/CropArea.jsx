@@ -12,15 +12,20 @@
  */
 
 import { useState } from 'react';
+import CropAreaVisuals from "./CropAreaVisuals";
 
 const CropArea = ({ initialTopLeft, initialTopRight, initialBottomRight, initialBottomLeft, minHeight, minWidth }) => {
-  const topLeft = useState(initialTopLeft);
-  const topRight = useState(initialTopRight);
-  const bottomRight = useState(initialBottomRight);
-  const bottomLeft = useState(initialBottomLeft);
+  const [topLeft, setTopLeft] = useState(initialTopLeft);
+  const [topRight, setTopRight] = useState(initialTopRight);
+  const [bottomRight, setTopBottomRight] = useState(initialBottomRight);
+  const [bottomLeft, setBottomLeft] = useState(initialBottomLeft);
 
+  const attrs = {
+    topLeft,
+    bottomRight,
+  }
   return(
-    <div>Crop area</div>
+    <CropAreaVisuals {...attrs} />
   );
 };
 export default CropArea;

@@ -30,6 +30,7 @@ export default function Home() {
         .work-area {
           margin: 2rem;
           border: 8px solid #000;
+          position: relative;
         }
       `}</style>
 

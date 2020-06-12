@@ -10,13 +10,15 @@
 import CropArea from '../components/CropArea';
 
 const MIN_SIZE = 64;
+const INITIAL_TOP_LEFT = [120.5, 100];
+const INITIAL_BOTTOM_RIGHT = [200.3, 250];
 
 const Croppable = ({ url }) => (
   <div className="wrapper">
     <img src={url} alt="Image being cropped" className="image" />
 
     <div className="crop">
-      <CropArea minWidth={MIN_SIZE} minHeight={MIN_SIZE} />
+      <CropArea minWidth={MIN_SIZE} minHeight={MIN_SIZE} initialTopLeft={INITIAL_TOP_LEFT} initialBottomRight={INITIAL_BOTTOM_RIGHT}/>
     </div>
 
     <style jsx>{`
