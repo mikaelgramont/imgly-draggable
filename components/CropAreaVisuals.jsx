@@ -1,22 +1,61 @@
 import Draggable from "react-draggable";
 
-const CropAreaVisuals = ({ x, y, width, height, areaEventHandlers }) => {
+const CropAreaVisuals = ({ top, bottom, right, left, areaEventHandlers, handleCallbacks }) => {
   const style = {
-    width: `${width}px`,
-    height: `${height}px`,
+    top: 0,
+    left: 0,
+    right: `${right}px`,
+    bottom: `${bottom}px`,
   };
-  const position = { x, y };
+  const position = { x: left, y: top };
+
+  const {
+    setTop,
+    setLeft,
+    setBottom,
+    setRight,
+  } = handleCallbacks;
+
+  const updateTopLeft = (e, data) => {
+    const {x, y, lastX, lastY, deltaX, deltaY} = data;
+    console.log('updateTopLeft', {x, deltaX});
+    setTop(y);
+    setLeft(x);
+
+    setBottom(bottom + deltaY);
+    setRight(right + deltaX);
+  }
+  const updateTopRight = (e, {x, y}) => {
+    setTop(y);
+    setRight(x);
+  }
+  const updateBottomRight = (e, {x, y}) => {
+    setBottom(y);
+    setRight(x);
+  };
+  const updateBottomLeft = (e, {x, y}) => {
+    setBottom(y);
+    setLeft(x);
+  };
 
   return(
     <>
 
-    <Draggable bounds="parent" position={position} {...areaEventHandlers}>
+    <Draggable disabled bounds="parent" position={position} {...areaEventHandlers}>
       <div className="outside" style={style}>
         <div className="ratio-line vertical vertical-1" />
         <div className="ratio-line vertical vertical-2" />
         <div className="ratio-line horizontal horizontal-1" />
         <div className="ratio-line horizontal horizontal-2" />
+
+        {/*<div className="handle handle-top-right" />*/}
+        {/*<div className="handle handle-bottom-right" />*/}
+        {/*<div className="handle handle-bottom-left" />*/}
       </div>
+    </Draggable>
+
+    <Draggable bounds="parent" position={{x: left, y: top}} onDrag={updateTopLeft}>
+      <div className="handle handle-top-left" />
     </Draggable>
 
     <style jsx>{`
@@ -53,6 +92,36 @@ const CropAreaVisuals = ({ x, y, width, height, areaEventHandlers }) => {
         }
         .horizontal-2 {
           top: calc(66.67% - 1px);
+        }
+        .handle {
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          border: 4px solid #fff;
+        }
+        .handle-top-left {
+          // top: 0;
+          // left: 0;
+          border-right: none;
+          border-bottom: none;
+        }
+        .handle-top-right {
+          // top: 0;
+          // right: 0;
+          border-left: none;
+          border-bottom: none;
+        }
+        .handle-bottom-left {
+          // bottom: 0;
+          // left: 0;
+          border-right: none;
+          border-top: none;
+        }
+        .handle-bottom-right {
+          // bottom: 0;
+          // right: 0;
+          border-left: none;
+          border-top: none;
         }
         `}</style>
 
