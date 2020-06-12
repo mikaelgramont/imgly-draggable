@@ -1,5 +1,7 @@
 import Head from 'next/head'
 
+import Croppable from "../components/Croppable";
+
 export default function Home() {
   return (
     <div className="container">
@@ -9,7 +11,7 @@ export default function Home() {
 
       <main>
         <div className="work-area">
-          <img src="/images/beach.jpg" alt="Image being cropped" className="image"/>
+          <Croppable url="/images/beach.jpg" />
         </div>
       </main>
 
@@ -29,11 +31,6 @@ export default function Home() {
           margin: 2rem;
           border: 8px solid #000;
         }
-                
-        .image {
-          width: 100%;
-        }
-
       `}</style>
 
       <style jsx global>{`
@@ -41,9 +38,7 @@ export default function Home() {
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
+          font-family: Helvetica;
         }
 
         * {
