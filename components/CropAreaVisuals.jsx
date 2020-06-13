@@ -100,26 +100,22 @@ const CropAreaVisuals = ({ top, bottom, right, left, areaEventHandlers, handleCa
           border: 4px solid #fff;
         }
         .handle-top-left {
-          // top: 0;
-          // left: 0;
           border-right: none;
           border-bottom: none;
         }
         .handle-top-right {
-          // top: 0;
-          // right: 0;
+          margin-left: -20px;
           border-left: none;
           border-bottom: none;
         }
         .handle-bottom-left {
-          // bottom: 0;
-          // left: 0;
+          margin-top: -20px;
           border-right: none;
           border-top: none;
         }
         .handle-bottom-right {
-          // bottom: 0;
-          // right: 0;
+          margin-left: -20px;
+          margin-top: -20px;
           border-left: none;
           border-top: none;
         }
