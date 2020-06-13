@@ -12,5 +12,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-draggable": "^4.4.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
   }
 }
