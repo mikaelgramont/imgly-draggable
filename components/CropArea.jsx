@@ -29,6 +29,10 @@ const CropArea = ({ initialTopLeft, initialBottomRight, minHeight, minWidth }) =
   const [bottom, setBottom] = useState(initialBottomRight[1]);
   const [right, setRight] = useState(initialBottomRight[0]);
 
+  console.log({
+    top, left, bottom, right
+  });
+
   const areaEventHandlers = {
     onStop: (e, {x, y, deltaX, deltaY }) => {
       setLeft(x);

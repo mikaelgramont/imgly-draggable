@@ -1,6 +1,6 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import Croppable from "../components/Croppable";
+import Croppable from '../components/Croppable';
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
           justify-content: center;
           align-items: center;
         }
-        
+
         .work-area {
           margin: 2rem;
           border: 8px solid #000;
@@ -47,5 +47,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
