@@ -1,41 +1,26 @@
 import Draggable, { DraggableCore } from 'react-draggable';
+import PropTypes from 'proptypes';
 
 const CropAreaVisuals = ({ top, bottom, right, left, areaEventHandlers, handleCallbacks }) => {
   const style = {
-    top,
-    left,
     width: `${right}px`,
     height: `${bottom}px`,
   };
   const position = { x: left, y: top };
-
   const { setTop, setLeft, setBottom, setRight } = handleCallbacks;
 
-  const updateTopLeft = (e, data) => {
-    const { x, y, deltaX, deltaY } = data;
+  const topLeftStop = (e, { x, y }) => {
     setTop(y);
     setLeft(x);
-
-    setBottom(bottom - deltaY);
-    setRight(right - deltaX);
   };
-  const updateTopRight = (e, { x, y }) => {
-    setTop(y);
-    setRight(x);
-  };
-  const updateBottomRight = (e, { x, y }) => {
-    setBottom(y);
-    setRight(x);
-  };
-
-  const updateBottomLeft = (e, { x, y }) => {
-    setBottom(y);
-    setLeft(x);
+  const topLeftDrag = (e, { x, y, deltaX, deltaY }) => {
+    setTop(top + deltaY);
+    setLeft(left + deltaX);
   };
 
   return (
     <>
-      <Draggable bounds="parent" position={position} {...areaEventHandlers}>
+      <Draggable position={position} bounds="parent" {...areaEventHandlers}>
         <div className="outside" style={style}>
           <div className="ratio-line vertical vertical-1" />
           <div className="ratio-line vertical vertical-2" />
@@ -44,21 +29,19 @@ const CropAreaVisuals = ({ top, bottom, right, left, areaEventHandlers, handleCa
 
           {/*<div className="handle handle-top-right" />*/}
           {/*<div className="handle handle-bottom-left" />*/}
-          <DraggableCore bounds="parent" onDrag={updateTopLeft}>
-            <div className="handle handle-top-left" style={{ left, top }} />
-          </DraggableCore>
-
-          <DraggableCore bounds="parent" onDrag={updateBottomRight}>
-            <div className="handle handle-bottom-right" style={{ left: right, top: bottom }} />
-          </DraggableCore>
+          <div className="handle handle-bottom-right" style={{ right: 0, bottom: 0 }} />
         </div>
       </Draggable>
+      <DraggableCore onDrag={topLeftDrag} onStop={topLeftStop}>
+        <div className="handle handle-top-left" style={{ top, left }} />
+      </DraggableCore>
 
       <style jsx>{`
         .outside {
           position: absolute;
           border: 2px solid #fff;
           box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.5);
+          box-sizing: content-box;
         }
         .outside:hover {
           cursor: pointer;
@@ -119,4 +102,23 @@ const CropAreaVisuals = ({ top, bottom, right, left, areaEventHandlers, handleCa
     </>
   );
 };
+
+CropAreaVisuals.propTypes = {
+  areaEventHandlers: PropTypes.shape({
+    onDrag: PropTypes.func.isRequired,
+    onStart: PropTypes.func.isRequired,
+    onStop: PropTypes.func.isRequired,
+  }).isRequired,
+  bottom: PropTypes.number.isRequired,
+  handleCallbacks: PropTypes.shape({
+    setBottom: PropTypes.func.isRequired,
+    setLeft: PropTypes.func.isRequired,
+    setRight: PropTypes.func.isRequired,
+    setTop: PropTypes.func.isRequired,
+  }).isRequired,
+  left: PropTypes.number.isRequired,
+  top: PropTypes.number.isRequired,
+  right: PropTypes.number.isRequired,
+};
+
 export default CropAreaVisuals;

@@ -7,6 +7,7 @@
  - image url
  */
 
+import React from 'react';
 import CropArea from '../components/CropArea';
 
 const MIN_SIZE = 64;
@@ -17,7 +18,7 @@ const MIN_SIZE = 64;
  TODO: express these relatively to the image itself and then translate them into viewport coordinates.
  */
 const INITIAL_TOP_LEFT = [0, 0];
-const INITIAL_BOTTOM_RIGHT = [800, 500];
+const INITIAL_BOTTOM_RIGHT = [300, 300];
 
 const Croppable = ({ url }) => (
   <div className="wrapper">
@@ -25,10 +26,10 @@ const Croppable = ({ url }) => (
 
     <div className="crop">
       <CropArea
-        minWidth={MIN_SIZE}
-        minHeight={MIN_SIZE}
         initialTopLeft={INITIAL_TOP_LEFT}
         initialBottomRight={INITIAL_BOTTOM_RIGHT}
+        minWidth={MIN_SIZE}
+        minHeight={MIN_SIZE}
       />
     </div>
 
